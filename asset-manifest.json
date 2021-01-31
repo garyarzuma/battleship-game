@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/shopping-cart/static/css/main.106baaae.chunk.css",
-    "main.js": "/shopping-cart/static/js/main.2d8fd442.chunk.js",
-    "main.js.map": "/shopping-cart/static/js/main.2d8fd442.chunk.js.map",
-    "runtime-main.js": "/shopping-cart/static/js/runtime-main.86c3bf8c.js",
-    "runtime-main.js.map": "/shopping-cart/static/js/runtime-main.86c3bf8c.js.map",
-    "static/js/2.5a692bae.chunk.js": "/shopping-cart/static/js/2.5a692bae.chunk.js",
-    "static/js/2.5a692bae.chunk.js.map": "/shopping-cart/static/js/2.5a692bae.chunk.js.map",
-    "index.html": "/shopping-cart/index.html",
-    "static/css/main.106baaae.chunk.css.map": "/shopping-cart/static/css/main.106baaae.chunk.css.map",
-    "static/js/2.5a692bae.chunk.js.LICENSE.txt": "/shopping-cart/static/js/2.5a692bae.chunk.js.LICENSE.txt"
+    "main.css": "/battleship-game/static/css/main.106baaae.chunk.css",
+    "main.js": "/battleship-game/static/js/main.2d8fd442.chunk.js",
+    "main.js.map": "/battleship-game/static/js/main.2d8fd442.chunk.js.map",
+    "runtime-main.js": "/battleship-game/static/js/runtime-main.d41d10b5.js",
+    "runtime-main.js.map": "/battleship-game/static/js/runtime-main.d41d10b5.js.map",
+    "static/js/2.5a692bae.chunk.js": "/battleship-game/static/js/2.5a692bae.chunk.js",
+    "static/js/2.5a692bae.chunk.js.map": "/battleship-game/static/js/2.5a692bae.chunk.js.map",
+    "index.html": "/battleship-game/index.html",
+    "static/css/main.106baaae.chunk.css.map": "/battleship-game/static/css/main.106baaae.chunk.css.map",
+    "static/js/2.5a692bae.chunk.js.LICENSE.txt": "/battleship-game/static/js/2.5a692bae.chunk.js.LICENSE.txt"
   },
   "entrypoints": [
-    "static/js/runtime-main.86c3bf8c.js",
+    "static/js/runtime-main.d41d10b5.js",
     "static/js/2.5a692bae.chunk.js",
     "static/css/main.106baaae.chunk.css",
     "static/js/main.2d8fd442.chunk.js"
