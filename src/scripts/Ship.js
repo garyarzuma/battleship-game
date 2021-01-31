@@ -1,5 +1,4 @@
 const Ship = (length) => {
-  const myLength = length;
   let sunk = false;
   const shipHullArray = new Array(length).fill(0);
   const hit = (hitIndex) => {
@@ -11,7 +10,7 @@ const Ship = (length) => {
   const isSunk = () => {
     return sunk;
   };
-  return { isSunk, myLength, hit, shipHullArray };
+  return { isSunk, hit, shipHullArray };
 };
 
 export default Ship;
