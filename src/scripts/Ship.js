@@ -1,17 +1,17 @@
 const Ship = (length) => {
   let sunk = false;
-  const shipHullArray = new Array(length).fill(0);
-  const hit = (hitIndex) => {
+  let shipHits = 0;
+
+  const hit = () => {
     if (!sunk) {
-      shipHullArray[hitIndex] = 1;
-      if (shipHullArray.indexOf(0) === -1) sunk = true;
+      shipHits++;
+      if (shipHits === length) sunk = true;
     }
   };
   const isSunk = () => {
     return sunk;
   };
-  return { isSunk, hit, shipHullArray };
+  return { isSunk, hit, length };
 };
 
-export default Ship;
 module.exports = Ship;

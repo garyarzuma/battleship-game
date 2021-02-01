@@ -1,32 +1,21 @@
 const Ship = require("../scripts/Ship");
 
-const myShip = Ship(5);
-
 test("Creates Ship that isn't sunk", () => {
+  const myShip = Ship(5);
   expect(myShip.isSunk()).toBe(false);
 });
 
-myShip.hit(3);
-
-test("Ship gets hit", () => {
-  expect(myShip.shipHullArray).toEqual([0, 0, 0, 1, 0]);
+test("Ship gets sunk with length 2", () => {
+  const myShip = Ship(2);
+  myShip.hit();
+  myShip.hit();
+  expect(myShip.isSunk()).toBe(true);
 });
 
-describe("Ship sinks with length 3 when hit 3 times", () => {
-  // Applies only to tests in this describe block
-  const myShip2 = Ship(3);
-
-  beforeAll(() => {
-    myShip2.hit(2);
-    myShip2.hit(1);
-    myShip2.hit(0);
-  });
-
-  test("Ship sinks", () => {
-    expect(myShip2.isSunk()).toBe(true);
-  });
-
-  test("Ship hit location array is accurate", () => {
-    expect(myShip2.shipHullArray).toEqual([1, 1, 1]);
-  });
+test("Ship does NOT get sunk with length 5", () => {
+  const myShip = Ship(5);
+  myShip.hit();
+  myShip.hit();
+  myShip.hit();
+  expect(myShip.isSunk()).toBe(false);
 });
