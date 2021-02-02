@@ -1,11 +1,11 @@
 import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
-import App from "./App";
+import Gameloop from "./Gameloop";
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Gameloop />
   </React.StrictMode>,
   document.getElementById("root")
 );

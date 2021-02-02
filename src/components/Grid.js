@@ -3,7 +3,7 @@ import "../styles/Grid.css";
 
 const Grid = (props) => {
   return (
-    <div className="grid" onClick={() => console.log(props.y + ", " + props.x)}>
+    <div className="grid" onClick={() => props.onClick(props.y, props.x)}>
       {props.value}
     </div>
   );

@@ -1,5 +1,5 @@
 import { Gameboard } from "../scripts/Gameboard";
-const Player = require("../scripts/Player");
+import { Player } from "../scripts/Player";
 
 test("Human Player attacks a empty square and records a 1", () => {
   const computerGameboard = Gameboard();

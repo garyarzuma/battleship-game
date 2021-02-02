@@ -1,3 +1,4 @@
+import { tsPropertySignature } from "@babel/types";
 import React, { useState } from "react";
 import "../styles/GameboardComp.css";
 import Grid from "./Grid";
@@ -5,11 +6,18 @@ import Grid from "./Grid";
 const GameboardComp = (props) => {
   const displayBoard = props.gameboard.boardSpaces.map((row, rowIndex) => {
     return (
-      <div className="row">
+      <div key={rowIndex} className="row">
         {row.map((col, colIndex) => {
           return (
-            <div className="col">
-              {<Grid y={rowIndex} x={colIndex} value={col} />}
+            <div key={colIndex} className="col">
+              {
+                <Grid
+                  onClick={(y, x) => props.onClick(y, x)}
+                  y={rowIndex}
+                  x={colIndex}
+                  value={col}
+                />
+              }
             </div>
           );
         })}

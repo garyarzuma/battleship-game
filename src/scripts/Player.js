@@ -24,4 +24,4 @@ const Player = (isHuman = "true") => {
   return { attack, isHuman };
 };
 
-module.exports = Player;
+export { Player };
