@@ -1,3 +1,5 @@
+import { exportDefaultSpecifier } from "@babel/types";
+
 const Ship = require("../scripts/Ship");
 
 const Gameboard = () => {
@@ -26,7 +28,11 @@ const Gameboard = () => {
   };
 
   const receiveAttack = (y, x) => {
-    if (boardSpaces[y][x] !== 0 && boardSpaces !== "X") {
+    if (
+      boardSpaces[y][x] !== 0 &&
+      boardSpaces[y][x] !== "X" &&
+      boardSpaces[y][x] !== 1
+    ) {
       shipsArray.forEach((ship) => {
         if (ship.length === boardSpaces[y][x]) {
           boardSpaces[y][x] = "X";
@@ -41,9 +47,12 @@ const Gameboard = () => {
           }
         }
       });
-    } else {
+    } else if (boardSpaces[y][x] === 0) {
       boardSpaces[y][x] = 1;
       gameMessage = "Miss!";
+    } else {
+      //boardspace === X
+      return "Error!";
     }
   };
 

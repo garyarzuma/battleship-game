@@ -104,6 +104,21 @@ test("Hitting 3 space ship 2 times records a Hit! message", () => {
   expect(myGameboard.getMessage()).toEqual("Hit!");
 });
 
+test("Hitting a spot that has already been hit with an X returns Error! message", () => {
+  const myGameboard = Gameboard();
+  myGameboard.placeShips(3, "horiz", 8, 4);
+  myGameboard.receiveAttack(8, 4);
+
+  expect(myGameboard.receiveAttack(8, 4)).toBe("Error!");
+});
+
+test("Hitting a spot that has already been hit with a 1 (miss) returns Error! message", () => {
+  const myGameboard = Gameboard();
+  myGameboard.placeShips(3, "horiz", 8, 4);
+  myGameboard.receiveAttack(3, 4);
+  expect(myGameboard.receiveAttack(3, 4)).toBe("Error!");
+});
+
 test("Sinking all ships records a Hit and Sunk! You've sunk all my ships! message", () => {
   const myGameboard = Gameboard();
   myGameboard.placeShips(3, "horiz", 8, 3);
