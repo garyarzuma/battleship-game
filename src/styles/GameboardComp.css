@@ -1,0 +1,11 @@
+.row {
+  display: flex;
+}
+
+.col {
+  display: flex;
+}
+
+.gameboard {
+  margin: 30px;
+}

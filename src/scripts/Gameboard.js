@@ -1,5 +1,3 @@
-import { exportDefaultSpecifier } from "@babel/types";
-
 const Ship = require("../scripts/Ship");
 
 const Gameboard = () => {
