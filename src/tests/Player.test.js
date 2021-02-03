@@ -5,7 +5,7 @@ test("Human Player attacks a empty square and records a 1", () => {
   const computerGameboard = Gameboard();
   const humanPlayer = Player(true);
   humanPlayer.attack(computerGameboard, 4, 6);
-  expect(computerGameboard.boardSpaces).toEqual([
+  expect(computerGameboard.getBoardSpaces()).toEqual([
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -25,7 +25,7 @@ test("Human Player attacks an enemy ship and records an X", () => {
   const humanPlayer = Player(true);
   humanPlayer.attack(computerGameboard, 4, 6);
   humanPlayer.attack(computerGameboard, 5, 6);
-  expect(computerGameboard.boardSpaces).toEqual([
+  expect(computerGameboard.getBoardSpaces()).toEqual([
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -46,7 +46,7 @@ test("AI Player attacks a squares and doesnt repeat", () => {
   for (let i = 0; i < 100; i++) {
     computerPlayer.attack(humanGameboard);
   }
-  expect(humanGameboard.boardSpaces).toEqual([
+  expect(humanGameboard.getBoardSpaces()).toEqual([
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],
     [1, 1, 1, 1, 1, 1, 1, 1, 1, 1],

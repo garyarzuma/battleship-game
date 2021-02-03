@@ -2,7 +2,7 @@ import { Gameboard } from "../scripts/Gameboard";
 
 test("Gameborad is created", () => {
   const myGameboard = Gameboard();
-  expect(myGameboard.boardSpaces).toEqual([
+  expect(myGameboard.getBoardSpaces()).toEqual([
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -19,7 +19,7 @@ test("Gameborad is created", () => {
 test("Ship is placed in correct position vertically", () => {
   const myGameboard = Gameboard();
   myGameboard.placeShips(5, "vert", 2, 1);
-  expect(myGameboard.boardSpaces).toEqual([
+  expect(myGameboard.getBoardSpaces()).toEqual([
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 5, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -36,7 +36,7 @@ test("Ship is placed in correct position vertically", () => {
 test("Ship is placed in correct position horizontally", () => {
   const myGameboard = Gameboard();
   myGameboard.placeShips(3, "horiz", 8, 4);
-  expect(myGameboard.boardSpaces).toEqual([
+  expect(myGameboard.getBoardSpaces()).toEqual([
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -54,7 +54,7 @@ test("Ship is hit shows X in correct space on gameboard", () => {
   const myGameboard = Gameboard();
   myGameboard.placeShips(3, "horiz", 8, 4);
   myGameboard.receiveAttack(8, 5);
-  expect(myGameboard.boardSpaces).toEqual([
+  expect(myGameboard.getBoardSpaces()).toEqual([
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -72,7 +72,7 @@ test("Attack misses and records a missed hit on gameboard and Miss! message", ()
   const myGameboard = Gameboard();
   myGameboard.placeShips(3, "horiz", 8, 4);
   myGameboard.receiveAttack(4, 5);
-  expect(myGameboard.boardSpaces).toEqual([
+  expect(myGameboard.getBoardSpaces()).toEqual([
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -149,7 +149,7 @@ test("Sinking all ships records a Hit and Sunk! You've sunk all my ships! messag
   expect(myGameboard.getMessage()).toEqual(
     "Hit and Sunk! You've sunk all my ships!"
   );
-  expect(myGameboard.boardSpaces).toEqual([
+  expect(myGameboard.getBoardSpaces()).toEqual([
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
