@@ -1,10 +1,15 @@
-import { tsPropertySignature } from "@babel/types";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "../styles/GameboardComp.css";
 import Grid from "./Grid";
 
 const GameboardComp = (props) => {
-  const displayBoard = props.gameboard.boardSpaces.map((row, rowIndex) => {
+  const [display, setDisplay] = useState(props.gameboard);
+
+  useEffect(() => {
+    setDisplay(props.gameboard);
+  }, [props.gameboard]);
+
+  const displayFormatted = display.map((row, rowIndex) => {
     return (
       <div key={rowIndex} className="row">
         {row.map((col, colIndex) => {
@@ -28,7 +33,7 @@ const GameboardComp = (props) => {
   return (
     <div className="gameboard-container">
       {props.name}
-      <div className="gameboard">{displayBoard}</div>
+      <div className="gameboard">{displayFormatted}</div>
     </div>
   );
 };

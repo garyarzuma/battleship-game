@@ -58,7 +58,11 @@ const Gameboard = () => {
     return gameMessage;
   };
 
-  return { placeShips, boardSpaces, receiveAttack, getMessage };
+  const getBoardSpaces = () => {
+    return boardSpaces;
+  };
+
+  return { placeShips, getBoardSpaces, receiveAttack, getMessage };
 };
 
 export { Gameboard };
