@@ -2,7 +2,7 @@ import "./Gameloop.css";
 import GameboardComp from "./components/GameboardComp";
 import { Gameboard } from "./scripts/Gameboard";
 import { Player } from "./scripts/Player";
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 var _ = require("lodash");
 
 const playerBoard = Gameboard();
@@ -10,15 +10,15 @@ const computerBoard = Gameboard();
 const humanPlayer = Player(true);
 const computerPlayer = Player(false);
 computerBoard.placeShips(2, "vert", 2, 4);
-computerBoard.placeShips(3, "vert", 2, 5);
-computerBoard.placeShips(4, "vert", 2, 6);
-computerBoard.placeShips(5, "vert", 2, 7);
-computerBoard.placeShips(6, "vert", 2, 8);
+computerBoard.placeShips(3, "horiz", 0, 5);
+computerBoard.placeShips(4, "horiz", 8, 1);
+computerBoard.placeShips(5, "vert", 1, 1);
+computerBoard.placeShips(6, "vert", 2, 9);
 
-playerBoard.placeShips(2, "vert", 2, 4);
-playerBoard.placeShips(3, "vert", 2, 5);
+playerBoard.placeShips(2, "horiz", 1, 1);
+playerBoard.placeShips(3, "vert", 6, 4);
 playerBoard.placeShips(4, "vert", 2, 6);
-playerBoard.placeShips(5, "vert", 2, 7);
+playerBoard.placeShips(5, "horiz", 4, 0);
 playerBoard.placeShips(6, "vert", 2, 8);
 
 function Gameloop() {
@@ -47,18 +47,24 @@ function Gameloop() {
 
   return (
     <div className="App">
-      <div className="Message">{playerMessage}</div>
-      <GameboardComp
-        onClick={() => {}}
-        gameboard={playerBoardState}
-        name="Player 1"
-      />
-      <GameboardComp
-        onClick={(y, x) => handleClick(y, x)}
-        gameboard={computerBoardState}
-        name="USSR"
-      />
-      <div className="Message">{computerMessage}</div>
+      <div className="player-container">
+        <GameboardComp
+          onClick={() => {}}
+          gameboard={playerBoardState}
+          name="Player 1"
+          type="human"
+        />
+        <div className="Message">{playerMessage}</div>
+      </div>
+      <div className="computer-container">
+        <GameboardComp
+          onClick={(y, x) => handleClick(y, x)}
+          gameboard={computerBoardState}
+          name="USSR"
+          type="computer"
+        />
+        <div className="Message">{computerMessage}</div>
+      </div>
     </div>
   );
 }

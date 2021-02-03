@@ -21,6 +21,7 @@ const GameboardComp = (props) => {
                   y={rowIndex}
                   x={colIndex}
                   value={col}
+                  computerOrHuman={props.type}
                 />
               }
             </div>
@@ -39,15 +40,3 @@ const GameboardComp = (props) => {
 };
 
 export default GameboardComp;
-
-/* (row) => {
-    console.log(row);
-    return (
-      <div className="row">
-        {row.forEach((col) => {
-          console.log(col);
-          return <div className="col">col</div>;
-        })}
-      </div>
-    );
-  } */

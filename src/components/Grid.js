@@ -7,8 +7,11 @@ const Grid = (props) => {
     setValue(props.value);
   }, [props]);
   return (
-    <div className="grid" onClick={() => props.onClick(props.y, props.x)}>
-      {value}
+    <div
+      className={`grid${value}`}
+      onClick={() => props.onClick(props.y, props.x)}
+    >
+      <span className={`${props.computerOrHuman}${value}`}></span>
     </div>
   );
 };
