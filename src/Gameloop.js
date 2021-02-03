@@ -34,6 +34,7 @@ function Gameloop() {
     computerBoard.getMessage()
   );
 
+  //main game loop is here. Updates player click and message and executes computer click
   const handleClick = (y, x) => {
     humanPlayer.attack(computerBoard, y, x);
     //pass by reference wont update the state to rerender if we dont deep clone
