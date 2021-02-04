@@ -17,7 +17,7 @@ function Gameloop() {
   }, []);
 
   const [gameInstructions, setGameInstructions] = useState(
-    "Welcome to BattleShip! Start by Placing your ships. " +
+    "Welcome to BattleShip! Start by placing your ships. " +
       "You will have 5 ships to place, starting with a 6 unit " +
       "Carrier to a 2 unit Destroyer. You can set the orientation " +
       "with the Orientation toggle button"
@@ -66,10 +66,10 @@ function Gameloop() {
         setGameInstructions(
           "Player goes first! Choose locations on the enemy " +
             "board to attack. First player to sink all 5 enemy ships wins glory " +
-            "to powerful nation of valor!"
+            "to powerful nation and gains much valor!"
         );
       }
-    } else setPlayerMessage("Error! Can't place ship there");
+    } else setPlayerMessage("Glorious nation can't put ship there!");
   };
 
   const toggleOrientation = () => {
@@ -110,28 +110,33 @@ function Gameloop() {
 
   return (
     <div className="App">
-      <div className="player-container">
-        <GameboardComp
-          onClick={(y, x) => {
-            userPlaceShips(y, x);
-          }}
-          gameboard={playerBoardState}
-          name="Player 1"
-          type="human"
-        />
-        <div className="Message">{playerMessage}</div>
-      </div>
-      <div className="computer-container">
-        <GameboardComp
-          onClick={(y, x) => handleClick(y, x)}
-          gameboard={computerBoardState}
-          name="USSR"
-          type="computer"
-        />
-        <div className="Message">{computerMessage}</div>
-      </div>
-      <button onClick={toggleOrientation}>{orientation}</button>
+      <h1>BATTLESHIP</h1>
       <div className="instructions">{gameInstructions}</div>
+      <div className="gameboards-container">
+        <div className="player-container">
+          <GameboardComp
+            onClick={(y, x) => {
+              userPlaceShips(y, x);
+            }}
+            gameboard={playerBoardState}
+            name="Player 1"
+            type="human"
+          />
+          <div className="Message">{playerMessage}</div>
+        </div>
+        <div className="computer-container">
+          <GameboardComp
+            onClick={(y, x) => handleClick(y, x)}
+            gameboard={computerBoardState}
+            name="USSR"
+            type="computer"
+          />
+          <div className="Message">{computerMessage}</div>
+        </div>
+      </div>
+      {userShipsLeftToPlace[0] === undefined || (
+        <button onClick={toggleOrientation}>{orientation}</button>
+      )}
     </div>
   );
 }
