@@ -1,9 +1,6 @@
 import "./Gameloop.css";
 import GameboardComp from "./components/GameboardComp";
-import { Gameboard } from "./scripts/Gameboard";
-import { Player } from "./scripts/Player";
 import React, { useState, useEffect } from "react";
-import Ship from "./scripts/Ship";
 import Initialize from "./scripts/Initialize";
 var _ = require("lodash");
 
@@ -19,6 +16,16 @@ function Gameloop() {
     ] = Initialize();
   }, []);
 
+  const [gameInstructions, setGameInstructions] = useState(
+    "Welcome to BattleShip! Start by Placing your ships. " +
+      "You will have 5 ships to place, starting with a 6 unit " +
+      "Carrier to a 2 unit Destroyer. You can set the orientation " +
+      "with the Orientation toggle button"
+  );
+
+  const [gameOver, setGameOver] = useState(false);
+
+  //Board states
   const [playerBoardState, setPlayerBoardState] = useState(
     playerBoard.getBoardSpaces()
   );
@@ -26,6 +33,7 @@ function Gameloop() {
     computerBoard.getBoardSpaces()
   );
 
+  //Player Message States
   const [playerMessage, setPlayerMessage] = useState(playerBoard.getMessage());
   const [computerMessage, setComputerMessage] = useState(
     computerBoard.getMessage()
@@ -54,6 +62,13 @@ function Gameloop() {
 
       //clear the current error message if there was one
       setPlayerMessage("");
+      if (userShipsLeftToPlace[0] === 2) {
+        setGameInstructions(
+          "Player goes first! Choose locations on the enemy " +
+            "board to attack. First player to sink all 5 enemy ships wins glory " +
+            "to powerful nation of valor!"
+        );
+      }
     } else setPlayerMessage("Error! Can't place ship there");
   };
 
@@ -66,7 +81,7 @@ function Gameloop() {
   //main game loop is here. Updates player click and message and executes computer click
   const handleClick = (y, x) => {
     //check if user has placed all available ships
-    if (userShipsLeftToPlace[0] === undefined) {
+    if (userShipsLeftToPlace[0] === undefined && gameOver === false) {
       humanPlayer.attack(computerBoard, y, x);
       //pass by reference wont update the state to rerender if we dont deep clone
       const temp1 = _.cloneDeep(computerBoard.getBoardSpaces());
@@ -78,6 +93,18 @@ function Gameloop() {
       const temp2 = _.cloneDeep(playerBoard.getBoardSpaces());
       setPlayerBoardState(temp2);
       setPlayerMessage(playerBoard.getMessage());
+      if (
+        computerBoard.getMessage() === "Hit and Sunk! You've sunk all my ships!"
+      ) {
+        setGameOver(true);
+        setGameInstructions("Game over! Glory to all great nation of Player!");
+      }
+      if (
+        playerBoard.getMessage() === "Hit and Sunk! You've sunk all my ships!"
+      ) {
+        setGameOver(true);
+        setGameInstructions("Game over! Glory to all great nation of USSR!");
+      }
     }
   };
 
@@ -104,6 +131,7 @@ function Gameloop() {
         <div className="Message">{computerMessage}</div>
       </div>
       <button onClick={toggleOrientation}>{orientation}</button>
+      <div className="instructions">{gameInstructions}</div>
     </div>
   );
 }
