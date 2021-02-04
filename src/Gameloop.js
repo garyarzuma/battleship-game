@@ -64,7 +64,7 @@ function Gameloop() {
       setPlayerMessage("");
       if (userShipsLeftToPlace[0] === 2) {
         setGameInstructions(
-          "Player goes first! Choose locations on the enemy " +
+          "USA goes first! Choose locations on the enemy " +
             "board to attack. First player to sink all 5 enemy ships wins glory " +
             "to powerful nation and gains much valor!"
         );
@@ -97,7 +97,9 @@ function Gameloop() {
         computerBoard.getMessage() === "Hit and Sunk! You've sunk all my ships!"
       ) {
         setGameOver(true);
-        setGameInstructions("Game over! Glory to all great nation of Player!");
+        setGameInstructions(
+          "Game over! Glory to all great nation of US and A!"
+        );
       }
       if (
         playerBoard.getMessage() === "Hit and Sunk! You've sunk all my ships!"
@@ -119,10 +121,13 @@ function Gameloop() {
               userPlaceShips(y, x);
             }}
             gameboard={playerBoardState}
-            name="Player 1"
+            name="USA"
             type="human"
           />
           <div className="Message">{playerMessage}</div>
+          {userShipsLeftToPlace[0] === undefined || (
+            <button onClick={toggleOrientation}>{orientation}</button>
+          )}
         </div>
         <div className="computer-container">
           <GameboardComp
@@ -134,9 +139,6 @@ function Gameloop() {
           <div className="Message">{computerMessage}</div>
         </div>
       </div>
-      {userShipsLeftToPlace[0] === undefined || (
-        <button onClick={toggleOrientation}>{orientation}</button>
-      )}
     </div>
   );
 }

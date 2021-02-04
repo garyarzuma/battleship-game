@@ -33,7 +33,7 @@ const GameboardComp = (props) => {
 
   return (
     <div className="gameboard-container">
-      {props.name}
+      <h2>{props.name}</h2>
       <div className="gameboard">{displayFormatted}</div>
     </div>
   );

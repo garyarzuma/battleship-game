@@ -9,4 +9,15 @@
 .gameboard {
   margin: 30px;
   margin-top: 15px;
+  border: solid 15px black;
+  box-shadow: 5px 10px #363636;
+}
+
+h2 {
+  font-family: battleShipFont;
+}
+
+@font-face {
+  font-family: battleShipFont;
+  src: url(../fonts/GalacticaGrid.ttf);
 }
