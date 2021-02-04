@@ -20,6 +20,7 @@ const Gameboard = () => {
     let tempBoardSpaces = _.cloneDeep(boardSpaces); //clone
     for (let i = 0; i < shipLength; i++) {
       if (orientation === "Vertical") {
+        //check to see if there is a ship there or if the ship will go off the board
         if (tempBoardSpaces[y + i][x] === 0 && y + shipLength < 11) {
           tempBoardSpaces[y + i][x] = shipLength;
         } else return "Error! Can't place ship there!";

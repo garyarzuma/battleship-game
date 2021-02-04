@@ -1,4 +1,5 @@
 const Player = (isHuman = "true") => {
+  //really need to optimize this AI since it is just attacking random spots
   const computerAttack = (enemyBoard) => {
     let y;
     let x;
