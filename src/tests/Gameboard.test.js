@@ -18,7 +18,7 @@ test("Gameborad is created", () => {
 
 test("Ship is placed in correct position vertically", () => {
   const myGameboard = Gameboard();
-  myGameboard.placeShips(5, "vert", 2, 1);
+  myGameboard.placeShips(5, "Vertical", 2, 1);
   expect(myGameboard.getBoardSpaces()).toEqual([
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
     [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
@@ -160,5 +160,23 @@ test("Sinking all ships records a Hit and Sunk! You've sunk all my ships! messag
     [0, 0, 0, "X", "X", 0, 0, 0, 0, 0],
     [0, 0, 0, "X", "X", "X", 0, 0, 0, 0],
     [0, 0, "X", "X", "X", "X", "X", "X", 0, 0],
+  ]);
+});
+
+test("Can't place ship over another ship", () => {
+  const myGameboard = Gameboard();
+  myGameboard.placeShips(3, "horiz", 8, 4);
+  myGameboard.placeShips(4, "horiz", 8, 3);
+  expect(myGameboard.getBoardSpaces()).toEqual([
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 3, 3, 3, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
   ]);
 });

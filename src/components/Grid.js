@@ -10,6 +10,8 @@ const Grid = (props) => {
     <div
       className={`grid${value}`}
       onClick={() => props.onClick(props.y, props.x)}
+      onMouseOver={(event) => (event.target.style.backgroundColor = "green")}
+      onMouseOut={(event) => (event.target.style.backgroundColor = "")}
     >
       <span className={`${props.computerOrHuman}${value}`}></span>
     </div>

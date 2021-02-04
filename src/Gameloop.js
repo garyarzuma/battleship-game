@@ -2,26 +2,23 @@ import "./Gameloop.css";
 import GameboardComp from "./components/GameboardComp";
 import { Gameboard } from "./scripts/Gameboard";
 import { Player } from "./scripts/Player";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import Ship from "./scripts/Ship";
+import Initialize from "./scripts/Initialize";
 var _ = require("lodash");
 
-const playerBoard = Gameboard();
-const computerBoard = Gameboard();
-const humanPlayer = Player(true);
-const computerPlayer = Player(false);
-computerBoard.placeShips(2, "vert", 2, 4);
-computerBoard.placeShips(3, "horiz", 0, 5);
-computerBoard.placeShips(4, "horiz", 8, 1);
-computerBoard.placeShips(5, "vert", 1, 1);
-computerBoard.placeShips(6, "vert", 2, 9);
-
-playerBoard.placeShips(2, "horiz", 1, 1);
-playerBoard.placeShips(3, "vert", 6, 4);
-playerBoard.placeShips(4, "vert", 2, 6);
-playerBoard.placeShips(5, "horiz", 4, 0);
-playerBoard.placeShips(6, "vert", 2, 8);
+const [playerBoard, computerBoard, humanPlayer, computerPlayer] = Initialize();
 
 function Gameloop() {
+  useEffect(() => {
+    const [
+      playerBoard,
+      computerBoard,
+      humanPlayer,
+      computerPlayer,
+    ] = Initialize();
+  }, []);
+
   const [playerBoardState, setPlayerBoardState] = useState(
     playerBoard.getBoardSpaces()
   );
@@ -34,23 +31,63 @@ function Gameloop() {
     computerBoard.getMessage()
   );
 
+  const [userShipsLeftToPlace, setUserShipsLeftToPlace] = useState([
+    6,
+    5,
+    4,
+    3,
+    2,
+  ]);
+
+  const [orientation, setOrientation] = useState("Vertical");
+
+  const userPlaceShips = (y, x) => {
+    if (
+      playerBoard.placeShips(userShipsLeftToPlace[0], orientation, y, x) ===
+      undefined
+    ) {
+      /* removes first of array so essentially after user place the 6 length Ship
+   it will automatically leave the 5 length ship to place on next click */
+
+      setUserShipsLeftToPlace(userShipsLeftToPlace.filter((x, i) => i !== 0));
+      setPlayerBoardState(_.cloneDeep(playerBoard.getBoardSpaces()));
+
+      //clear the current error message if there was one
+      setPlayerMessage("");
+    } else setPlayerMessage("Error! Can't place ship there");
+  };
+
+  const toggleOrientation = () => {
+    if (orientation === "Vertical") {
+      setOrientation("Horizontal");
+    } else setOrientation("Vertical");
+  };
+
   //main game loop is here. Updates player click and message and executes computer click
   const handleClick = (y, x) => {
-    humanPlayer.attack(computerBoard, y, x);
-    //pass by reference wont update the state to rerender if we dont deep clone
-    const temp = _.cloneDeep(computerBoard.getBoardSpaces());
-    setComputerBoardState(temp);
-    setComputerMessage(computerBoard.getMessage());
-    computerPlayer.attack(playerBoard);
-    setPlayerBoardState(_.cloneDeep(playerBoard.getBoardSpaces()));
-    setPlayerMessage(playerBoard.getMessage());
+    //check if user has placed all available ships
+    if (userShipsLeftToPlace[0] === undefined) {
+      humanPlayer.attack(computerBoard, y, x);
+      //pass by reference wont update the state to rerender if we dont deep clone
+      const temp1 = _.cloneDeep(computerBoard.getBoardSpaces());
+      setComputerBoardState(temp1);
+      setComputerMessage(computerBoard.getMessage());
+      //pass by reference wont update the state to rerender if we dont deep clone
+
+      computerPlayer.attack(playerBoard);
+      const temp2 = _.cloneDeep(playerBoard.getBoardSpaces());
+      setPlayerBoardState(temp2);
+      setPlayerMessage(playerBoard.getMessage());
+    }
   };
 
   return (
     <div className="App">
       <div className="player-container">
         <GameboardComp
-          onClick={() => {}}
+          onClick={(y, x) => {
+            userPlaceShips(y, x);
+          }}
           gameboard={playerBoardState}
           name="Player 1"
           type="human"
@@ -66,6 +103,7 @@ function Gameloop() {
         />
         <div className="Message">{computerMessage}</div>
       </div>
+      <button onClick={toggleOrientation}>{orientation}</button>
     </div>
   );
 }

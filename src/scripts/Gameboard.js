@@ -1,11 +1,12 @@
 const Ship = require("../scripts/Ship");
+var _ = require("lodash");
 
 const Gameboard = () => {
   const shipsArray = [];
   let numOfSunkShips = 0;
   let gameMessage = "";
 
-  const boardSpaces = new Array(10);
+  let boardSpaces = new Array(10);
   for (let row = 0; row < 10; row++) {
     boardSpaces[row] = new Array(10);
     for (let col = 0; col < 10; col++) {
@@ -16,13 +17,19 @@ const Gameboard = () => {
   const placeShips = (shipLength, orientation, y, x) => {
     const myShip = Ship(shipLength);
     shipsArray.push(myShip);
+    let tempBoardSpaces = _.cloneDeep(boardSpaces); //clone
     for (let i = 0; i < shipLength; i++) {
-      if (orientation === "vert") {
-        boardSpaces[y + i][x] = shipLength;
+      if (orientation === "Vertical") {
+        if (tempBoardSpaces[y + i][x] === 0 && y + shipLength < 11) {
+          tempBoardSpaces[y + i][x] = shipLength;
+        } else return "Error! Can't place ship there!";
       } else {
-        boardSpaces[y][x + i] = shipLength;
+        if (tempBoardSpaces[y][x + i] === 0 && x + shipLength < 11) {
+          tempBoardSpaces[y][x + i] = shipLength;
+        } else return "Error! Can't place ship there!";
       }
     }
+    boardSpaces = _.cloneDeep(tempBoardSpaces);
   };
 
   const receiveAttack = (y, x) => {
