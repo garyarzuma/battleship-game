@@ -1,22 +1,26 @@
 {
   "files": {
     "main.css": "/battleship-game/static/css/main.e3061346.chunk.css",
-    "main.js": "/battleship-game/static/js/main.402953f5.chunk.js",
-    "main.js.map": "/battleship-game/static/js/main.402953f5.chunk.js.map",
-    "runtime-main.js": "/battleship-game/static/js/runtime-main.d41d10b5.js",
-    "runtime-main.js.map": "/battleship-game/static/js/runtime-main.d41d10b5.js.map",
-    "static/js/2.09c91b67.chunk.js": "/battleship-game/static/js/2.09c91b67.chunk.js",
-    "static/js/2.09c91b67.chunk.js.map": "/battleship-game/static/js/2.09c91b67.chunk.js.map",
+    "main.js": "/battleship-game/static/js/main.bd16a410.chunk.js",
+    "main.js.map": "/battleship-game/static/js/main.bd16a410.chunk.js.map",
+    "runtime-main.js": "/battleship-game/static/js/runtime-main.c835afdf.js",
+    "runtime-main.js.map": "/battleship-game/static/js/runtime-main.c835afdf.js.map",
+    "static/js/2.2b8d295d.chunk.js": "/battleship-game/static/js/2.2b8d295d.chunk.js",
+    "static/js/2.2b8d295d.chunk.js.map": "/battleship-game/static/js/2.2b8d295d.chunk.js.map",
+    "static/js/3.71617f29.chunk.js": "/battleship-game/static/js/3.71617f29.chunk.js",
+    "static/js/3.71617f29.chunk.js.map": "/battleship-game/static/js/3.71617f29.chunk.js.map",
     "index.html": "/battleship-game/index.html",
     "static/css/main.e3061346.chunk.css.map": "/battleship-game/static/css/main.e3061346.chunk.css.map",
-    "static/js/2.09c91b67.chunk.js.LICENSE.txt": "/battleship-game/static/js/2.09c91b67.chunk.js.LICENSE.txt",
+    "static/js/2.2b8d295d.chunk.js.LICENSE.txt": "/battleship-game/static/js/2.2b8d295d.chunk.js.LICENSE.txt",
+    "static/js/3.71617f29.chunk.js.LICENSE.txt": "/battleship-game/static/js/3.71617f29.chunk.js.LICENSE.txt",
     "static/media/GameboardComp.css": "/battleship-game/static/media/GalacticaGrid.25d24863.ttf",
+    "static/media/hitSFX.e8b6d110.mp3": "/battleship-game/static/media/hitSFX.e8b6d110.mp3",
     "static/media/Gameloop.css": "/battleship-game/static/media/manaspc.0d8565d9.ttf"
   },
   "entrypoints": [
-    "static/js/runtime-main.d41d10b5.js",
-    "static/js/2.09c91b67.chunk.js",
+    "static/js/runtime-main.c835afdf.js",
+    "static/js/2.2b8d295d.chunk.js",
     "static/css/main.e3061346.chunk.css",
-    "static/js/main.402953f5.chunk.js"
+    "static/js/main.bd16a410.chunk.js"
   ]
 }
