@@ -2,6 +2,8 @@ import "./Gameloop.css";
 import GameboardComp from "./components/GameboardComp";
 import React, { useState, useEffect } from "react";
 import Initialize from "./scripts/Initialize";
+import hitsSFX from "./sounds/hitSFX.mp3";
+import useSound from "use-sound";
 var _ = require("lodash");
 
 const [playerBoard, computerBoard, humanPlayer, computerPlayer] = Initialize();
@@ -49,6 +51,8 @@ function Gameloop() {
 
   const [orientation, setOrientation] = useState("Vertical");
 
+  const [hitSFX] = useSound(hitsSFX, { volume: 0.05 });
+
   const userPlaceShips = (y, x) => {
     if (
       playerBoard.placeShips(userShipsLeftToPlace[0], orientation, y, x) ===
@@ -83,16 +87,28 @@ function Gameloop() {
     //check if user has placed all available ships
     if (userShipsLeftToPlace[0] === undefined && gameOver === false) {
       humanPlayer.attack(computerBoard, y, x);
+
+      //sound effect played if hit
+      if (computerBoard.getMessage() !== "Miss!") {
+        hitSFX();
+      }
+
       //pass by reference wont update the state to rerender if we dont deep clone
       const temp1 = _.cloneDeep(computerBoard.getBoardSpaces());
       setComputerBoardState(temp1);
       setComputerMessage(computerBoard.getMessage());
-      //pass by reference wont update the state to rerender if we dont deep clone
 
       computerPlayer.attack(playerBoard);
+
+      //sound effect played if hit
+      if (playerBoard.getMessage() !== "Miss!") {
+        hitSFX();
+      }
+      //pass by reference wont update the state to rerender if we dont deep clone
       const temp2 = _.cloneDeep(playerBoard.getBoardSpaces());
       setPlayerBoardState(temp2);
       setPlayerMessage(playerBoard.getMessage());
+
       if (
         computerBoard.getMessage() === "Hit and Sunk! You've sunk all my ships!"
       ) {

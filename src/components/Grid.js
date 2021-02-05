@@ -6,11 +6,14 @@ const Grid = (props) => {
   useEffect(() => {
     setValue(props.value);
   }, [props]);
+
   return (
     <div
       className={`grid${value}`}
       //passes these coordinates all the way up to gameloop to use in handleClick fn
-      onClick={() => props.onClick(props.y, props.x)}
+      onClick={() => {
+        props.onClick(props.y, props.x);
+      }}
       onMouseOver={(event) => (event.target.style.backgroundColor = "green")}
       onMouseOut={(event) => (event.target.style.backgroundColor = "")}
     >
