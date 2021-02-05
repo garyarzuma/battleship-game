@@ -27,5 +27,4 @@ Date Completed: 2/04/2021
 
 -Gary Arzumanyan
 
-Homepage
 ![Sample Gif](src/images/battleship-sample.gif)
